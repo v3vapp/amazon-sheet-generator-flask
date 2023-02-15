@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>CSV Converter</title>
+  </head>
+  <body>
+    <h1>CSV Converter</h1>
+    <form method="post" enctype="multipart/form-data">
+      <input type="file" name="file1">
+      <input type="file" name="file2">
+      <input type="submit" value="Convert">
+    </form>
+
+    
+    <div>
+      {{ res }}
+    </div>
+
+    
+
+
+    <!-- {% if rows %}
+    <table>
+      {% for row in rows %}
+      <tr>
+        {% for value in row %}
+        <td>{{ value }}</td>
+        {% endfor %}
+      </tr>
+      {% endfor %}
+    </table>
+    {% endif %} -->
+  </body>
+</html>
