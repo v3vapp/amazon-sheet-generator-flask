@@ -69,7 +69,7 @@ class AmazonCheckSheet:
 
         now = dt.now().strftime("%m%d")
 
-        export_filename = f"AmazonCheckSheet_{now}.csv"
+        export_filename = f"AmazonCheckSheet.csv"
 
         export_path = f"./static/{export_filename}"
         df.to_csv(export_path, index=False, encoding="utf-8")

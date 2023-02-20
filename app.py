@@ -1,4 +1,4 @@
-from flask import Flask, request, render_template, request, jsonify, make_response
+from flask import Flask, request, render_template, request, jsonify, make_response, send_file
 import csv
 from converter import AmazonCheckSheet
 
@@ -16,17 +16,41 @@ def index():
 
         # file_contents = file.read().decode("utf-8")
         # rows = list(csv.reader(file_contents.splitlines()))
+
         else:
+            try:
+                sheet = AmazonCheckSheet(file1, file2)
 
-            sheet = AmazonCheckSheet(file1, file2)
-            filename = sheet.generate()
+                filename = sheet.generate()
 
-            response = make_response(jsonify({"filename": f"./static/{filename}"}))
+                response = make_response(jsonify({"filename": f"./static/{filename}"}))
+
+            except Exception as e:
+
+                response = make_response(jsonify({"error":f"Wrong files has uploaded... error -> {e}"}))
             
         return response
 
     return render_template("index.html")
 
+
+# -----------------------------------------------------------------------------------------------
+
+@app.route('/download')
+def download():
+    path = 'static/AmazonCheckSheet.csv'
+    return send_file(path, as_attachment=True)
+
+# -----------------------------------------------------------------------------------------------
+
+@app.route('/clear')
+def download():
+    
+    path = 'static/AmazonCheckSheet.csv'
+
+    return send_file(path, as_attachment=True)
+
+#--------------------------------------------------------------------------
 if __name__ == "__main__":
 
     app.run()
